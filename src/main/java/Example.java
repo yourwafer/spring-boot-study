@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
+@RequestMapping("example")
 public class Example {
     @RequestMapping("/")
     String home() {
