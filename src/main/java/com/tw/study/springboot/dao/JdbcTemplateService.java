@@ -1,4 +1,4 @@
-package com.tw.study.springboot.service;
+package com.tw.study.springboot.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
