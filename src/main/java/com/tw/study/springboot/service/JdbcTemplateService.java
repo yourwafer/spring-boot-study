@@ -3,10 +3,15 @@ package com.tw.study.springboot.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
@@ -26,6 +31,18 @@ public class JdbcTemplateService {
 
     @PostConstruct
     void init() throws SQLException {
-        logger.info(template.getDataSource().getConnection().toString());
+        template.execute("select ''", new PreparedStatementCallback<Object>() {
+            @Override
+            public Object doInPreparedStatement(PreparedStatement preparedStatement) throws SQLException, DataAccessException {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                ResultSetMetaData meta = resultSet.getMetaData();
+                int columnCount = meta.getColumnCount();
+                String columnClassName = meta.getColumnClassName(1);
+                logger.info(columnCount + "->" + columnClassName);
+
+                return null;
+            }
+        });
+        logger.info("--------------" + template.getDataSource().getConnection().toString());
     }
 }
