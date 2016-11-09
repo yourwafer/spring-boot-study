@@ -1,0 +1,21 @@
+server:
+  port: 8081
+#server.servlet-path=/ws/*
+#server.context-path=/boot
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/gaia
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      max-active: 50
+      test-on-borrow: true
+  aop:
+    auto: true
+    proxy-target-class: true
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+
