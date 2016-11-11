@@ -18,4 +18,11 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: create
-
+---
+spring:
+    profiles: test
+    datasource:
+          url: jdbc:h2:mem:gaia;DB_CLOSE_DELAY=-1;MODE=MySQL;INIT=RUNSCRIPT FROM 'classpath:init_test_db.sql';
+          username: sa
+          password:
+          driver-class-name: org.h2.Driver
