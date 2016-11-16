@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by hwwei on 2016/11/8.
  */
 @RestController
-@EnableAutoConfiguration
 @RequestMapping("example")
 public class Example {
     @RequestMapping("/")
